@@ -13,6 +13,7 @@ namespace Temperature
     public class BootStrap : IBootstrap
     {
         private readonly ApplicationConfig _applicationConfig;
+        
         public BootStrap(ApplicationConfig config)
         {
             _applicationConfig = config;
