@@ -1,4 +1,5 @@
 ﻿@page
+@using TempCoreApi.Models
 @model Temperature.Pages.StationModel
 
 @{
@@ -8,6 +9,28 @@
     {
         <div class="container">
             
+            @{
+                var stationInformation = (List<StationInformation>)ViewData["SmhiStationInformations"];
+
+                var items = stationInformation.Select(station => new SelectListItem
+                {
+                    Text = station.StationName,
+                    Value = station.StationId.ToString()
+                });
+                
+                //Html.DropDownListFor(h=>h.SmhiStationInformations, new List<SelectListItem>())
+            }
+            
+            <div class="row">
+                <div class="col-md-4">
+                    <div class=" form-group">
+                        <label class="custom-control-label">Välj station</label>
+                        <select name="stationer" class="form-control" asp-items="@items.OrderBy(h=>h.Text)"></select>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
     }
 
